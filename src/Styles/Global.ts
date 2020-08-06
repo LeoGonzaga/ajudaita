@@ -73,3 +73,5 @@ export const InputText = styled.TextInput`
 `;
 
 export const DetailTextButton = styled.TouchableOpacity``;
+
+export const ShowPassword = styled.TouchableOpacity``;

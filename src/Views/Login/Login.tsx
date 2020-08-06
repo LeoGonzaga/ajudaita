@@ -1,31 +1,29 @@
-import React from 'react';
-import {
-  View,
-  KeyboardAvoidingView,
-  TextInput,
-  StyleSheet,
-  Text,
-  Platform,
-  TouchableWithoutFeedback,
-  Button,
-  Keyboard,
-} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {Animated, KeyboardAvoidingView, Platform} from 'react-native';
 import {
   Logo,
   ButtonAction,
   TitleButton,
   InputText,
-  DetailTextButton,
   ContainerInputs,
   Container,
+  ShowPassword,
 } from '../../Styles/Global';
 import {Colors} from '../../Styles/Colors';
-import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/Feather';
 
+Icon.loadFont();
 const Login: React.FC = ({navigation}) => {
+  const [hidePassword, setHidePassword] = useState(true);
+
   return (
     <Container>
-      <Logo source={require('../../Assets/Logo.png')} />
+      <ShowPassword
+        onPress={() => {
+          setHidePassword(!hidePassword);
+        }}>
+        <Logo source={require('../../Assets/Logo.png')} />
+      </ShowPassword>
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         style={{flex: 1}}>
@@ -34,7 +32,9 @@ const Login: React.FC = ({navigation}) => {
             placeholder="Digite seu melhor email"
             keyboardType="email-address"
           />
-          <InputText placeholder="Digite sua senha" secureTextEntry />
+          <InputText
+            placeholder="Digite sua senha"
+            secureTextEntry={hidePassword}></InputText>
           <ButtonAction primary underlayColor={Colors.onClick}>
             <TitleButton>Entrar</TitleButton>
           </ButtonAction>
