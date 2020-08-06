@@ -5,6 +5,7 @@ import {ButtonType} from '../Types/Types';
 export const Container = styled.View`
   flex: 1;
   background: ${Colors.secundary};
+  justify-content: flex-end;
 `;
 
 export const Logo = styled.Image`
@@ -13,7 +14,7 @@ export const Logo = styled.Image`
   background-color: ${Colors.primary};
   align-self: center;
   border-radius: 10px;
-  margin-top: 50px;
+  margin-top: 80px;
 `;
 
 export const TitleApp = styled.Text`
@@ -29,10 +30,9 @@ export const SubTitle = styled.Text`
   text-align: center;
 `;
 export const ContainerButton = styled.View`
-  flex: 1%;
-  justify-content: flex-end;
+  flex: 1;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 40px 0;
 `;
 
 export const ButtonAction = styled.TouchableHighlight`
@@ -54,3 +54,22 @@ export const TitleButton = styled.Text`
   font-weight: bold;
   font-size: 20px;
 `;
+
+export const ContainerInputs = styled.View`
+  align-items: center;
+  margin-top: 40px;
+  align-items: center;
+`;
+
+export const InputText = styled.TextInput`
+  width: 90%;
+  height: 60px;
+  padding: 10px;
+  border-radius: 24px;
+  border: 1px solid ${Colors.grey};
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 18px;
+`;
+
+export const DetailTextButton = styled.TouchableOpacity``;

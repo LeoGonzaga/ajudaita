@@ -1,36 +1,45 @@
 import React from 'react';
-import {View, Text, Alert} from 'react-native';
-
-import styled from 'styled-components/native';
 import {
-  Container,
-  ContainerButton,
-  ButtonAction,
-  TitleApp,
-  SubTitle,
-  TitleButton,
+  View,
+  KeyboardAvoidingView,
+  TextInput,
+  StyleSheet,
+  Text,
+  Platform,
+  TouchableWithoutFeedback,
+  Button,
+  Keyboard,
+} from 'react-native';
+import {
   Logo,
+  ButtonAction,
+  TitleButton,
+  InputText,
+  DetailTextButton,
+  ContainerInputs,
+  Container,
 } from '../../Styles/Global';
 import {Colors} from '../../Styles/Colors';
+import styled from 'styled-components/native';
 
-const Login: React.FC = () => {
+const Login: React.FC = ({navigation}) => {
   return (
     <Container>
       <Logo source={require('../../Assets/Logo.png')} />
-
-      <TitleApp>Ajuda Ita</TitleApp>
-      <SubTitle>Uma frase braba</SubTitle>
-      <ContainerButton>
-        <ButtonAction
-          primary
-          onPress={() => Alert.alert('aaaaaa')}
-          underlayColor={Colors.onClick}>
-          <TitleButton>Entrar</TitleButton>
-        </ButtonAction>
-        <ButtonAction>
-          <TitleButton primary>Criar uma conta</TitleButton>
-        </ButtonAction>
-      </ContainerButton>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={{flex: 1}}>
+        <ContainerInputs>
+          <InputText
+            placeholder="Digite seu melhor email"
+            keyboardType="email-address"
+          />
+          <InputText placeholder="Digite sua senha" secureTextEntry />
+          <ButtonAction primary underlayColor={Colors.onClick}>
+            <TitleButton>Entrar</TitleButton>
+          </ButtonAction>
+        </ContainerInputs>
+      </KeyboardAvoidingView>
     </Container>
   );
 };

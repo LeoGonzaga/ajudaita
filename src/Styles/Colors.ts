@@ -3,4 +3,5 @@ export const Colors = {
   secundary: '#fff',
   subTitle: '#2C2929',
   onClick: '#166609',
+  grey: "#7B7D7A"
 };

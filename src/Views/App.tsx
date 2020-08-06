@@ -11,7 +11,8 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Login from '../Views/Login/Login';
+import Initial from './Initial/Initial';
+import Login from './Login/Login';
 
 const Stack = createStackNavigator();
 
@@ -20,11 +21,18 @@ const App = () => {
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator
+          initialRouteName="Initial"
+          screenOptions={{headerStyle: {elevation: 0}}}>
+          <Stack.Screen
+            name="Initial"
+            component={Initial}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{headerShown: false}}
+            options={{title: ''}}
           />
         </Stack.Navigator>
       </NavigationContainer>
