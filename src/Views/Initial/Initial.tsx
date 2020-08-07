@@ -1,7 +1,5 @@
-import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import React, {useRef, useEffect} from 'react';
 
-import styled from 'styled-components/native';
 import {
   Container,
   ContainerButton,
@@ -12,19 +10,54 @@ import {
   Logo,
 } from '../../Styles/Global';
 import {Colors} from '../../Styles/Colors';
+import {useNavigation} from '@react-navigation/native';
+import {Animated} from 'react-native';
 
-const Login: React.FC = ({navigation}) => {
+const FadeInView: React.FC = (props) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
+  return (
+    <Animated.View
+      style={{
+        opacity: fadeAnim,
+      }}>
+      {props.children}
+    </Animated.View>
+  );
+};
+
+const Login: React.FC = () => {
+  const {navigate} = useNavigation();
+
+  function navigateToLogin() {
+    navigate('Login');
+  }
+  function navigateToHome() {
+    navigate('Home');
+  }
+
+  useEffect(() => {
+    !true ? navigateToLogin() : navigateToHome();
+  }, []);
+
   return (
     <Container>
-      <Logo source={require('../../Assets/Logo.png')} />
+      <FadeInView>
+        <Logo source={require('../../Assets/Logo.png')} />
+        <TitleApp>Ajuda Ita</TitleApp>
+        <SubTitle>Uma frase braba</SubTitle>
+      </FadeInView>
 
-      <TitleApp>Ajuda Ita</TitleApp>
-      <SubTitle>Uma frase braba</SubTitle>
       <ContainerButton>
-        <ButtonAction
-          primary
-          onPress={() => navigation.navigate('Login')}
-          underlayColor={Colors.onClick}>
+        <ButtonAction primary onPress={navigateToLogin}>
           <TitleButton>Entrar</TitleButton>
         </ButtonAction>
         <ButtonAction>

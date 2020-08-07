@@ -9,12 +9,23 @@ import {
   Container,
   ShowPassword,
 } from '../../Styles/Global';
-import {Colors} from '../../Styles/Colors';
 import Icon from 'react-native-vector-icons/Feather';
+import {useNavigation} from '@react-navigation/native';
+
+import {Colors} from '../../Styles/Colors';
 
 Icon.loadFont();
-const Login: React.FC = ({navigation}) => {
+const Login: React.FC = () => {
+  const {navigate, reset} = useNavigation();
+
   const [hidePassword, setHidePassword] = useState(true);
+
+  function handleNavigationToHome() {
+    reset({
+      index: 0,
+      routes: [{name: 'Home'}],
+    });
+  }
 
   return (
     <Container>
@@ -35,7 +46,10 @@ const Login: React.FC = ({navigation}) => {
           <InputText
             placeholder="Digite sua senha"
             secureTextEntry={hidePassword}></InputText>
-          <ButtonAction primary underlayColor={Colors.onClick}>
+          <ButtonAction
+            primary
+            underlayColor={Colors.onClick}
+            onPress={handleNavigationToHome}>
             <TitleButton>Entrar</TitleButton>
           </ButtonAction>
         </ContainerInputs>
